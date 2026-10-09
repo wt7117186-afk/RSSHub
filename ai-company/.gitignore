@@ -1,2 +1,5 @@
 logs/
+telegram/.env
+telegram/data/
+群聊工作区/
 .DS_Store

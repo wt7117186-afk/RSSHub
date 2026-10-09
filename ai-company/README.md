@@ -22,12 +22,21 @@
 | 工程师 | Codex | [roles/codex-工程师.md](roles/codex-工程师.md) |
 | 监事 / 顾问 | Claude | [roles/claude-监事.md](roles/claude-监事.md) |
 
-## 工作群 = GitHub Issues
+## 工作群
 
-- **一个任务 = 一个 Issue。** 所有人在 Issue 下面留言，这就是这个任务的群聊。
+### Telegram 群：日常沟通、随手派活
+
+- 群里有你和三个机器人：Muse、Codex、Claude。
+- `@codex 做个……` → Codex 干活，结果发回群里；`@claude 帮我看看……` → Claude 回答；`@muse ……` → Muse 处理。
+- AI 之间也会互相 @ 接力（例如 Codex 做完 @claude 检查），最多连续 6 轮，之后等你发话。
+- 一条消息叫谁：开头连着的几个 @ 都会被叫到；开头没有 @ 时，只叫第一个被 @ 的人。
+- 背后是 Muse 云电脑上的中枢程序 `telegram/hub.py`，配置见 [开张清单.md](开张清单.md) 第 6 步。
+
+### GitHub Issues：正式任务的记录
+
+- **一个任务 = 一个 Issue。** 所有人在 Issue 下面留言，这就是这个任务的档案。
 - 每条留言开头写角色名：`【老板】` `【Muse】` `【Codex】` `【Claude】`。
 - 状态用标签表示：`待派活` → `进行中` → `待审核` → `待老板批准` → 关闭。
-- 手机装 GitHub App，所有留言都会推送给你。
 
 ## 一个任务怎么走
 
@@ -49,6 +58,8 @@ CLAUDE.md            Claude 的入口（引用公司手册 + 监事职责）
 roles/               三个岗位说明（贴给对应的 AI）
 scripts/初始化.sh     一次性：建标签
 scripts/派活.sh       Muse 用来派活给 Codex
+scripts/群聊.sh       Muse 在 Telegram 群里看消息、发言
+telegram/hub.py      Telegram 工作群中枢（在 Muse 云电脑上常驻运行）
 reports/             日报 / 周报
 决策日志.md           老板拍板的事
 .github/             任务单模板、PR 模板、Claude 自动审核

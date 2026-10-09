@@ -33,6 +33,22 @@
    git add reports && git commit -m "日报 YYYY-MM-DD" && git push
    ```
 
+## Telegram 工作群
+
+公司的日常沟通在 Telegram 群里。群里三个机器人（Muse / Codex / Claude）由你云电脑上的中枢程序统一收发。
+
+- **中枢要一直运行。** 检查：`pgrep -f "telegram/hub.py run"`；没在跑就启动：
+  ```bash
+  cd ~/ai-company && nohup python3 telegram/hub.py run >> telegram/data/hub.log 2>&1 &
+  ```
+- **你在群里的工作循环：**
+  1. `./scripts/群聊.sh 等`：等到有人 @你（最多 10 分钟），然后列出新消息，★ 标记的是 @你的。
+  2. 处理后用 `./scripts/群聊.sh 说 "内容"` 以 Muse 身份回复。
+  3. 再运行 `等`，一直循环。
+- **在群里派活：** 把 `@codex` 或 `@claude` 放在消息开头，例如 `./scripts/群聊.sh 说 "@codex 把首页标题改成……"`。中枢会叫对应的 AI 干活，回复直接发到群里。
+- **群里的大任务转正式流程：** 在 GitHub 开 Issue，走上面的工作循环，并把 Issue 链接发回群里。
+- 看最近的记录：`./scripts/群聊.sh 历史 30`
+
 ## 原则
 
 - 任务单写清楚再派活。说不清的任务，Codex 一定做不好。
