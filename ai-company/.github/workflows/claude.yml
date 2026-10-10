@@ -33,12 +33,12 @@ jobs:
 
             你是公司的监事 Claude。先读 AGENTS.md 和 roles/claude-监事.md。
 
-            1. 从 PR 描述里的 `Closes #<编号>` 找到任务单 Issue，用 `gh issue view <编号> --comments` 读完整任务单。
+            1. 任务单抄在 PR 描述里；如果描述里有 `Closes #<编号>`，再用 `gh issue view <编号> --comments` 读那个 Issue。
             2. 用 `gh pr diff` 看实际改动，对照验收标准逐条检查。
-            3. 用 `gh pr comment` 在 PR 里按 roles/claude-监事.md 的格式写审核结论（通过 / 退回）。
-            4. 更新 Issue 标签：
-               - 通过：`gh issue edit <编号> --remove-label 待审核 --add-label 待老板批准`，并在 Issue 里留言 @${{ github.repository_owner }} 请老板合并。
-               - 退回：`gh issue edit <编号> --remove-label 待审核 --add-label 退回`，并在 Issue 里留言说明要改什么，请 Muse 安排返工。
+            3. 用 `gh pr comment` 在 PR 里按 roles/claude-监事.md 的格式写审核结论（通过 / 退回）。通过时在结论里 @${{ github.repository_owner }} 请老板合并。
+            4. 如果关联了 Issue，更新它的标签：
+               - 通过：`gh issue edit <编号> --remove-label 待审核 --add-label 待老板批准`
+               - 退回：`gh issue edit <编号> --remove-label 待审核 --add-label 退回`
           claude_args: |
             --allowedTools "Read,Grep,Glob,Bash(gh pr view:*),Bash(gh pr diff:*),Bash(gh pr comment:*),Bash(gh issue view:*),Bash(gh issue edit:*),Bash(gh issue comment:*),mcp__github_inline_comment__create_inline_comment"
 
